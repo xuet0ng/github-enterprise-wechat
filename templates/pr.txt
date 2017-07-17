@@ -1,0 +1,5 @@
+【{{ repo.full_name }}】
+<br/>
+Pull Request {{ pr.action}} by <a href={{ pr.user_url }}> {{ pr.user_name }} </a>
+<br/>
+<a href={{ pr.html_url }}> <b>{{ pr.title}}</b> </a>
