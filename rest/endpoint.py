@@ -12,7 +12,8 @@ app = Flask(__name__)
 we = WeChat(
     url=os.environ.get('WECHAT_BASE_URL'),
     corp_id=os.environ.get('WECHAT_CORP_ID'),
-    corp_secret=os.environ.get('WECHAT_CORP_SECRET')
+    corp_secret=os.environ.get('WECHAT_CORP_SECRET'),
+    agent_id=os.environ.get('WECHAT_AGENT_ID')
 )
 
 
@@ -35,7 +36,9 @@ def wechat():
     }
 
     if 'pull_request' in payload:
-        we.send_message(pr_msg(repo, payload))
+        we.auto_send_message(
+            pr_msg(repo, payload)
+        )
         return 'yoyoyo'
     elif 'issue' in payload:
         return
