@@ -39,7 +39,7 @@ class WeChat(object):
         data = {
             "touser": to_user,
             "toparty": to_party,
-            "totag": "",
+            "totag": '',
             "msgtype": "text",
             "agentid": 1000002,
             "text": {
@@ -63,15 +63,16 @@ class WeChat(object):
         agent = self.get_agent()
 
         allow_users = reduce(
-            lambda x, y: '%s | %s' % (x, y),
-            map(lambda x: x['userid'], agent['allow_userinfos']['user'])
+            lambda x, y: y if x == '' and y else '%s|%s' % (x, y),
+            map(lambda x: x['userid'], agent['allow_userinfos']['user']),
+            ''
         )
 
         allow_parties = reduce(
-            lambda x, y: '%s | %s' % (x, y),
-            agent['allow_partys']['partyid']
+            lambda x, y: y if x == '' and y else '%s|%s' % (x, y),
+            agent['allow_partys']['partyid'],
+            ''
         )
-
         self.send_message(msg=msg, to_user=allow_users, to_party=allow_parties)
 
 
