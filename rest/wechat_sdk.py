@@ -74,5 +74,3 @@ class WeChat(object):
             ''
         )
         self.send_message(msg=msg, to_user=allow_users, to_party=allow_parties)
-
-
