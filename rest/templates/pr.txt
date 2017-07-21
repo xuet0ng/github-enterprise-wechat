@@ -1,5 +1,1 @@
-【{{ repo.full_name }}】
-<br/>
-Pull Request {{ pr.action}} by <a href={{ pr.user_url }}> {{ pr.user_name }} </a>
-<br/>
-<a href={{ pr.html_url }}> <b>{{ pr.title}}</b> </a>
+<div class="gray">{{ pr.time }}</div><div class="normal">项目：[{{ repo.full_name }}]</div>状态：<div class="highlight">{{ pr.action}}</div><div class="normal">发起：{{ pr.user_name }}</div>
