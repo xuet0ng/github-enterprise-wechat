@@ -32,7 +32,7 @@ class WeChat(object):
         self.token = t
 
     @token
-    def send_message(self, msg, to_user, to_party):
+    def send_message(self, msg, to_user, to_party, msg_type):
         params = {
             'access_token': self.token['access_token']
         }
@@ -40,11 +40,9 @@ class WeChat(object):
             "touser": to_user,
             "toparty": to_party,
             "totag": '',
-            "msgtype": "text",
-            "agentid": 1000002,
-            "text": {
-                "content": msg
-            },
+            "msgtype": msg_type,
+            "agentid": self.agent_id,
+            msg_type: msg,
             "safe": 0
         }
         r = requests.post(url=self.url+'/message/send', params=params, json=data)
@@ -59,7 +57,7 @@ class WeChat(object):
         r = requests.get(url=self.url+'/agent/get', params=params)
         return r.json()
 
-    def auto_send_message(self, msg):
+    def auto_send_text_card_message(self, msg):
         agent = self.get_agent()
 
         allow_users = reduce(
@@ -73,4 +71,4 @@ class WeChat(object):
             agent['allow_partys']['partyid'],
             ''
         )
-        self.send_message(msg=msg, to_user=allow_users, to_party=allow_parties)
+        self.send_message(msg=msg, to_user=allow_users, to_party=allow_parties, msg_type='textcard')

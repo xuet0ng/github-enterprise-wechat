@@ -36,7 +36,7 @@ def wechat():
     }
 
     if 'pull_request' in payload:
-        we.auto_send_message(
+        we.auto_send_text_card_message(
             pr_msg(repo, payload)
         )
         return 'yoyoyo'
