@@ -43,7 +43,6 @@ class WeChat(object):
             "msgtype": msg_type,
             "agentid": self.agent_id,
             msg_type: msg,
-            "safe": 0
         }
         r = requests.post(url=self.url+'/message/send', params=params, json=data)
         return r.json()
@@ -68,7 +67,7 @@ class WeChat(object):
 
         allow_parties = reduce(
             lambda x, y: y if x == '' and y else '%s|%s' % (x, y),
-            agent['allow_partys']['partyid'],
+            map(lambda x: str(x), agent['allow_partys']['partyid']),
             ''
         )
         self.send_message(msg=msg, to_user=allow_users, to_party=allow_parties, msg_type='textcard')
