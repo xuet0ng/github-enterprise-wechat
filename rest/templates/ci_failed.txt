@@ -1,0 +1,1 @@
+<div class="gray">{{ job.time }}</div><div class="normal">项目：[{{ job.name }}]</div>状态：<div class="highlight">{{ job.status}}</div>

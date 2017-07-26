@@ -58,7 +58,6 @@ class WeChat(object):
 
     def auto_send_text_card_message(self, msg):
         agent = self.get_agent()
-
         allow_users = reduce(
             lambda x, y: y if x == '' and y else '%s|%s' % (x, y),
             map(lambda x: x['userid'], agent['allow_userinfos']['user']),
