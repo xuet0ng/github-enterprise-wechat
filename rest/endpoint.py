@@ -36,6 +36,8 @@ def wechat():
     }
 
     if 'pull_request' in payload:
+        if payload['action'] not in ['closed', 'opened', 'reopened']:
+            return 'ignore ' + payload['action']
         we.auto_send_text_card_message(
             pr_msg(repo, payload)
         )
